@@ -147,8 +147,6 @@ class App {
   }
 
   login(email, password, device) {
-    // Cerca nell'array users l'email e password, se lo trova permette l'accesso, altrimenti mostra un messaggio di errore
-
     const userFound = this.users.find(function (user) {
       if (user.email === email && user.password === password) return true;
       else return false;
@@ -165,7 +163,6 @@ class App {
   }
 
   register(email, password, device) {
-    // Cerca nell'array users l'email, se lo trova mostra un messaggio di errore, altrimenti crea un nuovo utente
     const userFound = this.users.find(function (user) {
       if (user.email === email) return true;
       else return false;
@@ -180,7 +177,6 @@ class App {
   }
 
   logout(token) {
-    // Cerca nell'array auth il token, se lo trova cancella l'elemento, altrimenti mostra un messaggio di errore
     const authFound = this.auth.find(function (auth) {
       if (auth.token === token) return true;
       else return false;
@@ -195,7 +191,6 @@ class App {
   }
 
   changeUsername(username, token) {
-    // Cerca nell'array users l'id e il token, se lo trova permette di modificare l'username, altrimenti mostra un messaggio di errore
     const authFound = this.auth.find(function (auth) {
       if (auth.token === token) return true;
       else return false;
@@ -214,7 +209,6 @@ class App {
   }
 
   deleteAccount(token) {
-    // Cerca nell'array users l'id e il token, se lo trova cancella l'elemento, altrimenti mostra un messaggio di errore
     const authFound = this.auth.find(function (auth) {
       if (auth.token === token) return true;
       else return false;
@@ -237,7 +231,6 @@ class App {
     address,
     phone
   ) {
-    // Permette a un user di creare un nuovo annuncio e lo aggiunge nell'array ads, impostando tutti i parametri richiesti
     const authFound = this.auth.find(function (auth) {
       if (auth.token === token) return true;
       else return false;
@@ -271,7 +264,6 @@ class App {
     phone,
     token
   ) {
-    // Cerca nell'array ads l'id, se lo trova permette di modificare i parametri dell'ad, altrimenti mostra un messaggio di errore
     const auth = this.getAuthByToken(token);
     const adFound = null;
     if (!!auth) {
@@ -305,7 +297,6 @@ class App {
   }
 
   deleteAd(referenceKeyAd, token) {
-    // Cerca nell'array ads l'id, se lo trova cancella l'elemento, altrimenti mostra un messaggio di errore
     const auth = this.getAuthByToken(token);
     const adFound = null;
     if (!!auth) {
@@ -328,7 +319,6 @@ class App {
   }
 
   markAsSold(referenceKeyAd, token, referenceKeyUserPurchase) {
-    // Cerca nell'array ads l'id, se lo trova modifica la voce sold, altrimenti mostra un messaggio di errore
     const auth = this.getAuthByToken(token);
     const adFound = null;
     if (!!auth) {
@@ -355,7 +345,6 @@ class App {
   }
 
   createReview(title, rating, description, referenceKeyAd, token) {
-    // Permette a un user di recensire un annuncio e un utente lo aggiunge nell'array reviews
     const auth = this.getAuthByToken(token);
 
     const adFound = this.ads.find(function (ad) {
@@ -383,7 +372,6 @@ class App {
   }
 
   updateReview(referenceKeyReview, title, rating, description, token) {
-    // Cerca nell'array reviews l'id, se lo trova permette di modificare i parametri dell'annuncio, altrimenti mostra un messaggio di errore
     const auth = this.getAuthByToken(token);
     const reviewFound = null;
     if (!!auth) {
@@ -412,7 +400,6 @@ class App {
   }
 
   deleteReview(referenceKeyReview, token) {
-    // Cerca nell'array reviews l'id, se lo trova cancella l'elemento, altrimenti mostra un messaggio di errore
     const auth = this.getAuthByToken(token);
     const reviewFound = null;
     if (!!auth) {
@@ -435,7 +422,6 @@ class App {
   }
 
   createReport(referenceKeyAd, token, title, description) {
-    // Permette a un user di creare un report e lo aggiunge nell'array reports
     const auth = this.getAuthByToken(token);
     const adFound = this.ads.find(function (ad) {
       if (ad.primaryKeyAd === referenceKeyAd) return true;
@@ -456,7 +442,6 @@ class App {
   }
 
   closeReport(referenceKeyReport, token) {
-    // Cerca nell'array reports l'id, se lo trova modifica la voce closed, altrimenti mostra un messaggio di errore
     const auth = this.getAuthByToken(token);
     const reportFound = null;
     if (!!auth) {
@@ -479,7 +464,6 @@ class App {
   }
 
   listByCategory(category) {
-    // Cerca nell'array ads la category, se la trova restituisce l'array filtrato, altrimenti restituisce un array vuoto
     this.ads = this.ads.filter(function (ad) {
       if (ad.category === category) return true;
       else return false;
@@ -487,7 +471,6 @@ class App {
   }
 
   listUserFavorites(referenceKeyUser) {
-    // Cerca nell'array favorites l'id, se lo trova restituisce l'array filtrato, altrimenti restituisce un array vuoto
     return this.favorites.filter(function (favorite) {
       if (favorite.referenceKeyUser === referenceKeyUser) return true;
       else return false;
@@ -495,7 +478,6 @@ class App {
   }
 
   addToFavorite(referenceKeyAd, token) {
-    // Permette a un user di aggiungere un annuncio come preferito
     const authFound = this.auth.find(function (auth) {
       if (auth.token === token) return true;
       else return false;
@@ -518,7 +500,6 @@ class App {
   }
 
   deleteFavorite(referenceKeyAd, token) {
-    // Cerca nell'array favorites l'id, se lo trova cancella l'elemento, altrimenti mostra un messaggio di errore
     const auth = this.getAuthByToken(token);
     const favoriteFound = null;
     if (!!auth) {
@@ -541,7 +522,6 @@ class App {
   }
 
   showAdDetails(referenceKeyAd, token) {
-    // Cerca nell'array ads l'id, se lo trova mostra i dettagli dell'annuncio, altrimenti mostra un messaggio di errore
     const auth = this.getAuthByToken(token);
     return this.ads.filter(function (ad) {
       if (ad.primaryKeyAd === referenceKeyAd) return true;
@@ -550,7 +530,6 @@ class App {
   }
 
   listUserAds(referenceKeyUser) {
-    // Cerca nell'array ads gli id dell'user, se lo trova mostra un array filtrato, altrimenti restituisce un array vuoto
     return this.ads.filter(function (ad) {
       if (ad.referenceKeyUser === referenceKeyUser) return true;
       else return false;
@@ -558,7 +537,6 @@ class App {
   }
 
   listUserReviews(referenceKeyUser) {
-    // Cerca nell'array reviews gli id dell'user, se lo trova mostra un array filtrato, altrimenti restituisce un array vuoto
     return this.reviews.filter(function (review) {
       if (review.referenceKeyUser === referenceKeyUser) return true;
       else return false;
@@ -566,22 +544,11 @@ class App {
   }
 
   listUserSoldedAds(referenceKeyUser) {
-    // Cerca nell'array ads gli id dell'user con lo status sold, se lo trova mostra un array filtrato, altrimenti restituisce un array vuoto
-    return this.ads.filter(function (ad) {
-      if (
-        ad.referenceKeyUser === referenceKeyUser &&
-        ad.referenceKeyUserPurchase !== ""
-      )
-        return true;
-      else return false;
-    });
-  }
-
-  listUserBuyedAds(referenceKeyUser) {
-    // Cerca nell'array ads gli id dell'user con lo status sold, se lo trova mostra un array filtrato, altrimenti restituisce un array vuoto
-    return this.ads.filter(function (ad) {
-      if ((ad, referenceKeyUserPurchase === referenceKeyUser)) return true;
-      else return false;
-    });
+    if (
+      ad.referenceKeyUser === referenceKeyUser &&
+      ad.referenceKeyUserPurchase !== ""
+    )
+      return true;
+    else return false;
   }
 }
