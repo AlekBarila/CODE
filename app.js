@@ -110,26 +110,7 @@ class App {
           return false;
         else return true;
       });
-    } else console.log("Autenticazione non effettuata");
-  }
-
-  changeDeviceName(token, deviceName, device) {
-    const auth = this.getAuthByToken(token);
-    if (!!auth) {
-      if (
-        device.referenceKeyUser === auth.referenceKeyUser &&
-        device.idDevice === device
-      ) {
-        this.devices = this.devices.map(function (device) {
-          if (
-            device.referenceKeyUser === auth.referenceKeyUser &&
-            device.idDevice === device
-          ) {
-            return { ...device, deviceName: deviceName };
-          } else return device;
-        });
-      } else console.log("Non è possibile modificare questo dispositivo");
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
   }
 
   registerDevice(token, device) {
@@ -142,8 +123,8 @@ class App {
       if (userDevices.length < 2) {
         const newDevice = new ModelDevice(auth.referenceKeyUser, device);
         this.devices = [...this.devices, newDevice];
-      } else console.log("Numero massimo di dispositivi raggiunto");
-    } else console.log("Autenticazione non effettuata");
+      } else console.log("2 device max pls");
+    } else console.log("Hacker esci pls");
   }
 
   login(email, password, device) {
@@ -156,10 +137,7 @@ class App {
       const newAuth = new ModelAuth(userFound.primaryKeyUser);
       this.auth = [...this.auth, newAuth];
       return newAuth.token;
-    } else
-      console.log(
-        "utente non registrato o hai raggiunto il numero massimo di dispositivi"
-      );
+    } else console.log("troppi dispositivi connessi");
   }
 
   register(email, password, device) {
@@ -249,7 +227,7 @@ class App {
         phone
       );
       this.ads = [...this.ads, newAd];
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
   }
 
   updateAd(
@@ -271,7 +249,7 @@ class App {
         if (ad.primaryKeyAd === referenceKeyAd) return true;
         else return false;
       });
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
 
     if (!!adFound) {
       const isUserOwner = auth.referenceKeyUser === adFound.idOwner;
@@ -292,7 +270,7 @@ class App {
             };
           else return ad;
         });
-      } else console.log("Non sei il proprietario dell'annuncio");
+      } else console.log("chi sei?");
     } else console.log("Annuncio non trovato");
   }
 
@@ -304,7 +282,7 @@ class App {
         if (ad.primaryKeyAd === referenceKeyAd) return true;
         else return false;
       });
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
 
     if (!!adFound) {
       const isUserOwner = auth.referenceKeyUser === adFound.idOwner;
@@ -314,7 +292,7 @@ class App {
           if (ad.primaryKeyAd === referenceKeyAd) return false;
           else return true;
         });
-      } else console.log("Non sei il proprietario dell'annuncio");
+      } else console.log("chi sei?");
     } else console.log("Annuncio non trovato");
   }
 
@@ -326,7 +304,7 @@ class App {
         if (ad.primaryKeyAd === referenceKeyAd) return true;
         else return false;
       });
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
 
     if (!!adFound) {
       const isUserOwner = auth.referenceKeyUser === adFound.idOwner;
@@ -340,7 +318,7 @@ class App {
             };
           else return ad;
         });
-      } else console.log("Non sei il proprietario dell'annuncio");
+      } else console.log("chi sei?");
     } else console.log("Annuncio non trovato");
   }
 
@@ -368,7 +346,7 @@ class App {
             "Solo chi acquisita il prodotto puo' creare una recensione"
           );
       } else console.log("Annuncio non trovato");
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
   }
 
   updateReview(referenceKeyReview, title, rating, description, token) {
@@ -379,7 +357,7 @@ class App {
         if (review.primaryKeyReview === referenceKeyReview) return true;
         else return false;
       });
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
 
     if (!!reviewFound) {
       const isUserOwner =
@@ -395,7 +373,7 @@ class App {
             };
           else return review;
         });
-      } else console.log("Non sei il proprietario della recensione");
+      } else console.log("chi sei?");
     } else console.log("Recensione non trovata");
   }
 
@@ -407,7 +385,7 @@ class App {
         if (review.primaryKeyReview === referenceKeyReview) return true;
         else return false;
       });
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
 
     if (!!reviewFound) {
       const isUserOwner =
@@ -417,7 +395,7 @@ class App {
           if (review.primaryKeyReview === referenceKeyReview) return false;
           else return true;
         });
-      } else console.log("Non sei il proprietario della recensione");
+      } else console.log("chi sei?");
     } else console.log("Recensione non trovata");
   }
 
@@ -438,7 +416,7 @@ class App {
         );
         this.reports = [...this.reports, newReport];
       } else console.log("Annuncio non trovato");
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
   }
 
   closeReport(referenceKeyReport, token) {
@@ -449,7 +427,7 @@ class App {
         if (report.primaryKeyReport === referenceKeyReport) return true;
         else return false;
       });
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
 
     if (!!reportFound) {
       this.reports = this.reports.map(function (report) {
@@ -496,7 +474,7 @@ class App {
         );
         this.favorites = [...this.favorites, newFavorite];
       } else console.log("Annuncio non trovato");
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
   }
 
   deleteFavorite(referenceKeyAd, token) {
@@ -511,7 +489,7 @@ class App {
           return true;
         else return false;
       });
-    } else console.log("Autenticazione non effettuata");
+    } else console.log("chi sei?");
 
     if (!!favoriteFound) {
       this.favorites = this.favorites.filter(function (favorite) {
@@ -521,19 +499,15 @@ class App {
     } else console.log("Non puoi eliminare questo preferito");
   }
 
-  showAdDetails(referenceKeyAd, token) {
-    const auth = this.getAuthByToken(token);
-    return this.ads.filter(function (ad) {
-      if (ad.primaryKeyAd === referenceKeyAd) return true;
-      else return false;
-    });
-  }
-
   listUserAds(referenceKeyUser) {
-    return this.ads.filter(function (ad) {
-      if (ad.referenceKeyUser === referenceKeyUser) return true;
-      else return false;
-    });
+    // return this.ads.filter(function (ad) {
+    //   if (ad.referenceKeyUser === referenceKeyUser) return true;
+    //   else return false;
+    // });
+
+    this.ads = this.ads.filter(
+      (ad) => ad.referenceKeyUser === referenceKeyUser
+    );
   }
 
   listUserReviews(referenceKeyUser) {
